@@ -1,14 +1,14 @@
 require('plugins')
 
-require('shortcuts')
 require('settings')
+require('shortcuts')
 
+require('pconfig.impatient')
 require('pconfig.treesitter')
 require('pconfig.colorizer')
 require('pconfig.colour')
 require('pconfig.lsp.lsp-config')
 require('pconfig.lsp.lsp-cmp')
-require('pconfig.lsp.lsp-signatures')
 require('pconfig.presence')
 require('pconfig.lualine')
 require('pconfig.autopairs')
@@ -18,7 +18,13 @@ require('pconfig.hop')
 require('pconfig.bufferline')
 require('pconfig.nvim-tree')
 require('pconfig.comment')
--- require('pconfig.autosave')
+require('pconfig.autosave')
+require('pconfig.sniprun')
+require('pconfig.sniprun')
+require('pconfig.indent-blankline')
+require('pconfig.cloak')
+
+vim.cmd "colorscheme radium"
 
 -- Features
 -- require('features.scmds')

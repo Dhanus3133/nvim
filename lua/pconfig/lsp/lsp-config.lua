@@ -31,7 +31,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers = {'pyright', 'arduino_language_server', 'tsserver', 'hls', 'cmake', 'html', 'cssls', 'rust_analyzer', 'sumneko_lua', 'bashls', 'clangd', 'gopls'}
+local servers = {'pyright', 'arduino_language_server', 'tsserver', 'hls', 'cmake', 'html', 'cssls', 'rust_analyzer', 'sumneko_lua', 'bashls', 'clangd', 'gopls', 'emmet_ls', 'tailwindcss', 'flow'}
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -44,3 +44,20 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+local python_root_files = {
+  'WORKSPACE', -- added for Bazel; items below are from default config
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  'pyrightconfig.json',
+}
+nvim_lsp["pyright"].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files))
+}

@@ -15,11 +15,8 @@ return packer.startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'williamboman/nvim-lsp-installer'
   use 'onsails/lspkind-nvim'
-  use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim' -- LuaLine
-  use {
-      'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
-  }
+  use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
 
   -- Theme
@@ -54,6 +51,9 @@ return packer.startup(function(use)
     'numToStr/Comment.nvim',
   }
 
+  -- Formatting
+  use 'sbdchd/neoformat'
+
   -- Cursorline
   use "xiyaowong/nvim-cursorword"
 
@@ -77,11 +77,22 @@ return packer.startup(function(use)
   use { 'AckslD/nvim-revJ.lua', requires = {'kana/vim-textobj-user', 'sgur/vim-textobj-parameter'}, }
   use "haringsrob/nvim_context_vt"
   use "phaazon/hop.nvim"
-  -- use "Pocco81/auto-save.nvim"
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
+  use "Pocco81/AutoSave.nvim"
+
+  -- Indent
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- Others
   use 'wakatime/vim-wakatime'
   use 'hrsh7th/vim-vsnip'
+  use 'lewis6991/impatient.nvim'
+  use {
+      "michaelb/sniprun",
+      run = "bash ./install.sh",
+  }
+  use {'turbio/bracey.vim', run = 'cd app & npm install --prefix server'}
+  use 'laytan/cloak.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then

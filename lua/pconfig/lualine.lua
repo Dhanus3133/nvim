@@ -69,7 +69,7 @@ require("lualine").setup({
   extensions = { "fzf", "fugitive", "quickfix" },
   options = { theme = "auto", globalstatus = true },
   sections = {
-    lualine_a = { "buffers", git_root },
+    lualine_a = { "windows", git_root },
     lualine_b = {
       { "branch", icon = "" },
       { "diff", symbols = { added = "", modified = "", removed = "" } },

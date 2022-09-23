@@ -25,3 +25,8 @@ keymap('n', '<leader>du', '<Plug>(toggle-lsp-diag-underline)')
 keymap('n', '<leader>ds', '<Plug>(toggle-lsp-diag-signs)')
 keymap('n', '<leader>dv', '<Plug>(toggle-lsp-diag-vtext)')
 keymap('n', '<leader>di', '<Plug>(toggle-lsp-diag-update_in_insert)')
+
+
+keymap('n', '<F7>', '<cmd> NvimTreeToggle <cr>')
+
+keymap('n', '<Leader>p', '<cmd> Neoformat <cr>')
