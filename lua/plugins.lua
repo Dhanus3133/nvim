@@ -66,6 +66,23 @@ return packer.startup(function(use)
     requires = {'kyazdani42/nvim-web-devicons'}
   }
 
+  -- Session
+
+  use {
+    'jedrzejboczar/possession.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
+
+  use {
+  'rmagatti/auto-session',
+  config = function()
+    require("auto-session").setup {
+      log_level = "error",
+      auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+    }
+  end
+  }
+
   -- LuaLine
   use {
   'nvim-lualine/lualine.nvim',
@@ -93,6 +110,21 @@ return packer.startup(function(use)
   }
   use {'turbio/bracey.vim', run = 'cd app & npm install --prefix server'}
   use 'laytan/cloak.nvim'
+  use {
+    'tamton-aquib/duck.nvim',
+    config = function()
+        vim.keymap.set('n', '<leader>hh', function() require("duck").hatch("💩") end, {})
+        vim.keymap.set('n', '<leader>hk', function() require("duck").cook() end, {})
+    end
+  }
+  use {
+    'gorbit99/codewindow.nvim',
+    config = function()
+      local codewindow = require('codewindow')
+      codewindow.setup()
+      codewindow.apply_default_keybinds()
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
