@@ -1,4 +1,4 @@
-require('pconfig.packer')
+-- require('pconfig.packer')
 -- Using a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer") if not status_ok then
   return
@@ -17,11 +17,18 @@ return packer.startup(function(use)
   use 'onsails/lspkind-nvim'
   use 'nvim-lua/lsp-status.nvim' -- LuaLine
   use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+  use 'simrat39/inlay-hints.nvim'
 
 
   -- Theme
   use 'norcalli/nvim-colorizer.lua'
   use 'marko-cerovac/material.nvim'
+  use 'catppuccin/nvim'
+  use 'xiyaowong/nvim-transparent'
+  use {
+    'm-demare/hlargs.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' }
+  }
 
   -- Syntax
   use 'nvim-treesitter/nvim-treesitter'
@@ -100,8 +107,12 @@ return packer.startup(function(use)
   -- Indent
   use 'lukas-reineke/indent-blankline.nvim'
 
+  -- Layout
+  use 'Pocco81/true-zen.nvim'
+
   -- Others
   use 'wakatime/vim-wakatime'
+  use 'bratpeki/truedark-vim'
   use 'hrsh7th/vim-vsnip'
   use 'lewis6991/impatient.nvim'
   use {
@@ -117,14 +128,14 @@ return packer.startup(function(use)
         vim.keymap.set('n', '<leader>hk', function() require("duck").cook() end, {})
     end
   }
-  use {
-    'gorbit99/codewindow.nvim',
-    config = function()
-      local codewindow = require('codewindow')
-      codewindow.setup()
-      codewindow.apply_default_keybinds()
-    end,
-  }
+  -- use {
+  --   'gorbit99/codewindow.nvim',
+  --   config = function()
+  --     local codewindow = require('codewindow')
+  --     codewindow.setup()
+  --     codewindow.apply_default_keybinds()
+  --   end,
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then

@@ -4,6 +4,8 @@ require('settings')
 require('shortcuts')
 
 require('pconfig.impatient')
+require('pconfig.possession')
+require('pconfig.autosession')
 require('pconfig.treesitter')
 require('pconfig.colorizer')
 require('pconfig.colour')
@@ -23,8 +25,17 @@ require('pconfig.sniprun')
 require('pconfig.sniprun')
 require('pconfig.indent-blankline')
 require('pconfig.cloak')
+require('pconfig.catppuccin')
+require('pconfig.truezen')
+require('pconfig.hlargs')
+require('pconfig.inlay-hints')
 
-vim.cmd "colorscheme radium"
+-- a = 1
+-- repeat
+--    require("duck").hatch()
+--    a = a + 1
+-- until( a > 3)
+-- require("duck").hatch("🥛")
 
 -- Features
 -- require('features.scmds')
