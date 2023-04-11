@@ -8,7 +8,7 @@ local servers = {
   "html",
   "cssls",
   "rust_analyzer",
-  "sumneko_lua",
+  "lua_ls",
   "bashls",
   "clangd",
   "gopls",
@@ -52,7 +52,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap(
     "n",
-    "<space>f",
+    "<leader>f",
     '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, })<CR>',
     opts
   )
@@ -86,6 +86,7 @@ local python_root_files = {
   "Pipfile",
   "pyrightconfig.json",
 }
+
 nvim_lsp["pyright"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -93,6 +94,21 @@ nvim_lsp["pyright"].setup({
     debounce_text_changes = 150,
   },
   root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files)),
+})
+
+nvim_lsp["lua_ls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
 })
 
 -- LSP Diagnostics Toggle bindings

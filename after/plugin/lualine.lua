@@ -1,4 +1,5 @@
 local utils = require("utils")
+local wpm = require("wpm")
 
 local function git_root()
   local git_dir = utils.strip_trailing_slash(vim.fn.fnamemodify(utils.get_git_directory(), ":p"))
@@ -83,6 +84,7 @@ require("lualine").setup({
       function()
         return " "
       end,
+      wpm.wpm,
       { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
       require("lsp-status").status_progress,
     },

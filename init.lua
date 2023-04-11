@@ -13,6 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-require("lazy").setup("custom.plugins")
+require("lazy").setup("custom.plugins", {
+  dev = {
+    path = "~/plugins",
+  },
+})
 
 vim.api.nvim_command("colorscheme radium")
+
+-- require("Leecode")
