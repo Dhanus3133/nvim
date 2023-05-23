@@ -3,7 +3,6 @@ return {
   config = function()
     require("presence"):setup({
       -- log_level = "debug",
-      buttons = false,
       enable_line_number = false,
       main_image = "file",
       buttons = true,

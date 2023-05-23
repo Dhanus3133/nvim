@@ -1,5 +1,4 @@
 local utils = require("utils")
-local wpm = require("wpm")
 
 local function git_root()
   local git_dir = utils.strip_trailing_slash(vim.fn.fnamemodify(utils.get_git_directory(), ":p"))
@@ -70,7 +69,7 @@ require("lualine").setup({
   extensions = { "fzf", "fugitive", "quickfix" },
   options = { theme = "auto", globalstatus = true },
   sections = {
-    lualine_a = { "windows", git_root },
+    lualine_a = { "filename", git_root },
     lualine_b = {
       { "branch", icon = "" },
       { "diff", symbols = { added = "", modified = "", removed = "" } },
@@ -84,11 +83,10 @@ require("lualine").setup({
       function()
         return " "
       end,
-      wpm.wpm,
       { "diagnostics", sources = { "nvim_diagnostic", "coc" } },
       require("lsp-status").status_progress,
     },
-    lualine_y = { "progress", "location", "fileformat", "filetype" },
+    lualine_y = { "location", "filetype" },
     lualine_z = { ZoomToggleStatus, HighlightSearchStatus, Mode.update_status },
   },
   inactive_sections = {

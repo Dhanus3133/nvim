@@ -14,6 +14,7 @@ local servers = {
   "gopls",
   "emmet_ls",
   "tailwindcss",
+  "marksman",
 }
 
 require("mason-lspconfig").setup({
