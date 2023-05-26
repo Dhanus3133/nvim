@@ -10,6 +10,7 @@ null_ls.setup({
   capabilities = capabilities,
   autostart = true,
   sources = {
+    null_ls.builtins.code_actions.gitsigns,
     blt.formatting.stylua.with({
       extra_args = { "--config-path", vim.fs.normalize("~/.config/nvim/.stylua.toml") },
     }),
