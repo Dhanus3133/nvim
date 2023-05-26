@@ -25,6 +25,7 @@ require("mason-lspconfig").setup({
 local nvim_lsp = require("lspconfig")
 
 local on_attach = function(client, bufnr)
+  local navbuddy = require("nvim-navbuddy")
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end

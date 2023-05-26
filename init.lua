@@ -20,5 +20,6 @@ require("lazy").setup("custom.plugins", {
 })
 
 vim.api.nvim_command("colorscheme radium")
+require("others.atlast")
 
 -- require("Leecode")

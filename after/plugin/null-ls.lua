@@ -1,5 +1,5 @@
 require("mason-null-ls").setup({
-  ensure_installed = { "stylua", "black", "prettier", "gofmt", "clang-format", "rustfmt", "shfmt" },
+  ensure_installed = { "stylua", "autopep8", "prettier", "gofmt", "clang-format", "rustfmt", "shfmt" },
 })
 
 local null_ls = require("null-ls")
@@ -13,7 +13,8 @@ null_ls.setup({
     blt.formatting.stylua.with({
       extra_args = { "--config-path", vim.fs.normalize("~/.config/nvim/.stylua.toml") },
     }),
-    blt.formatting.black.with({ args = { "--quiet", "-" } }),
+    -- blt.formatting.black.with({ args = { "--quiet", "-" } }),
+    blt.formatting.autopep8,
     blt.formatting.prettier,
     blt.formatting.gofmt,
     blt.formatting.clang_format,
