@@ -5,5 +5,6 @@ return {
   "hrsh7th/cmp-path",
   "onsails/lspkind-nvim",
   "hrsh7th/vim-vsnip",
+  "L3MON4D3/LuaSnip",
   "rafamadriz/friendly-snippets",
 }
