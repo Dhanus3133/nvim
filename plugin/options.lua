@@ -30,6 +30,7 @@ local options = {
   ignorecase = true,
   cursorline = true,
   linebreak = true,
+  modifiable = true,
 }
 
 for k, v in pairs(options) do
