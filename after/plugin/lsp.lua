@@ -2,7 +2,6 @@ require("mason").setup()
 
 local servers = {
   "pyright",
-  "arduino_language_server",
   "tsserver",
   "cmake",
   "html",
@@ -15,6 +14,10 @@ local servers = {
   "emmet_ls",
   "tailwindcss",
   "marksman",
+  "graphql",
+  "sqlls",
+  "yamlls",
+  "jsonls",
 }
 
 require("mason-lspconfig").setup({

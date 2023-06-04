@@ -1,5 +1,16 @@
 require("mason-null-ls").setup({
-  ensure_installed = { "stylua", "autopep8", "prettier", "gofmt", "clang-format", "rustfmt", "shfmt" },
+  ensure_installed = {
+    "stylua",
+    "autopep8",
+    "prettier",
+    "gofmt",
+    "clang-format",
+    "rustfmt",
+    "shfmt",
+    "markdownlint",
+    "sqlfluff",
+    "json_tool",
+  },
 })
 
 local null_ls = require("null-ls")
@@ -23,9 +34,10 @@ null_ls.setup({
       extra_args = { "--edition=2021" },
     }),
     blt.formatting.shfmt,
-    -- blt.formatting.goimports,
-    -- blt.formatting.gofumpt,
-    -- blt.formatting.isort,
-    -- blt.formatting.shfmt,
+    blt.formatting.markdownlint,
+    blt.formatting.sqlfluff.with({
+      extra_args = { "--dialect", "postgres" }, -- change to your dialect
+    }),
+    blt.formatting.json_tool,
   },
 })
