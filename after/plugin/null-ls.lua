@@ -38,6 +38,8 @@ null_ls.setup({
     blt.formatting.sqlfluff.with({
       extra_args = { "--dialect", "postgres" }, -- change to your dialect
     }),
-    blt.formatting.json_tool,
+    blt.formatting.json_tool.with({
+      extra_args = { "-m", "json.tool", "--indent", "2" },
+    }),
   },
 })
