@@ -10,6 +10,7 @@ require("mason-null-ls").setup({
     "markdownlint",
     "sqlfluff",
     "json_tool",
+    -- "prismaFmt",
   },
 })
 
@@ -17,11 +18,9 @@ local null_ls = require("null-ls")
 local blt = null_ls.builtins
 
 null_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
   autostart = true,
   sources = {
-    null_ls.builtins.code_actions.gitsigns,
+    blt.code_actions.gitsigns,
     blt.formatting.stylua.with({
       extra_args = { "--config-path", vim.fs.normalize("~/.config/nvim/.stylua.toml") },
     }),
@@ -41,5 +40,9 @@ null_ls.setup({
     blt.formatting.json_tool.with({
       extra_args = { "-m", "json.tool", "--indent", "2" },
     }),
+    -- blt.formatting.prismaFmt.with({
+    --   command = { "npx", "prisma", "format" },
+    --   args = {},
+    -- }),
   },
 })

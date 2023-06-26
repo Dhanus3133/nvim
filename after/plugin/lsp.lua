@@ -18,6 +18,7 @@ local servers = {
   "sqlls",
   "yamlls",
   "jsonls",
+  "prismals",
 }
 
 require("mason-lspconfig").setup({
@@ -114,6 +115,12 @@ nvim_lsp["lua_ls"].setup({
       },
     },
   },
+})
+
+nvim_lsp["tsserver"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern(".git"),
 })
 
 -- LSP Diagnostics Toggle bindings
