@@ -1,7 +1,10 @@
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = {
-    "nvim-tree/nvim-web-devicons", -- optional, for file icons
+    "nvim-tree/nvim-web-devicons",
   },
   version = "nightly",
+  keys = {
+    { "t", "<cmd>NvimTreeToggle<CR>", desc = "File Tree" },
+  },
 }
