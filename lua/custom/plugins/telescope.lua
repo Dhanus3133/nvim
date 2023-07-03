@@ -4,10 +4,10 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
-    "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-symbols.nvim",
   },
   keys = {
+    { "<leader>tt", "<cmd> Telescope CR>", desc = "Telescope" },
     { "<leader>ff", "<cmd> Telescope find_files <CR>", desc = "Find files" },
     { "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "Find all" },
     { "<leader>fw", "<cmd> Telescope live_grep <CR>", desc = "Live grep" },
@@ -20,12 +20,12 @@ return {
     { "<leader>pt", "<cmd> Telescope terms <CR>", desc = "Pick hidden term" },
     { "<leader>th", "<cmd> Telescope themes <CR>", desc = "PicK themes" },
     { "<leader>ma", "<cmd> Telescope marks <CR>", desc = "Telescope bookmarks" },
+    { "<leader>fe", "<cmd> Telescope file_browser <CR>", desc = "File Browser" },
   },
   config = function()
     local telescope = require("telescope")
     telescope.load_extension("media_files")
     telescope.load_extension("file_browser")
-    telescope.load_extension("project")
     telescope.setup({
       extensions = {
         media_files = {

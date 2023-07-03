@@ -28,8 +28,7 @@ require("mason-lspconfig").setup({
 
 local nvim_lsp = require("lspconfig")
 
-local on_attach = function(client, bufnr)
-  local navbuddy = require("nvim-navbuddy")
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
@@ -58,7 +57,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap(
     "n",
-    "<leader>f",
+    "<leader>k",
     '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, })<CR>',
     opts
   )

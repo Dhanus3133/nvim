@@ -23,6 +23,7 @@ require("nvim-treesitter.configs").setup({
     "vim",
     "prisma",
     "graphql",
+    "sql",
   },
   highlight = {
     enable = true,
