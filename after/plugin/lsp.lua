@@ -58,7 +58,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap(
     "n",
     "<leader>k",
-    '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, })<CR>',
+    '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, timeout_ms = 2000 })<CR>',
     opts
   )
   buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
@@ -68,17 +68,15 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local root_dir = function()
+  return nvim_lsp.util.root_pattern(".git")(vim.fn.expand("%:p:h"))
+end
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    root_dir = function()
-      return vim.loop.cwd()
-    end,
+    root_dir = root_dir,
   })
 end
 
@@ -95,18 +93,13 @@ local python_root_files = {
 nvim_lsp["pyright"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files)),
+  root_dir = nvim_lsp.util.root_pattern(python_root_files),
 })
 
 nvim_lsp["lua_ls"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
+  root_dir = root_dir,
   settings = {
     Lua = {
       diagnostics = {
@@ -116,10 +109,10 @@ nvim_lsp["lua_ls"].setup({
   },
 })
 
-nvim_lsp["tsserver"].setup({
+nvim_lsp["graphql"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern(".git"),
+  filetypes = { "graphql" },
 })
 
 -- LSP Diagnostics Toggle bindings
