@@ -19,6 +19,8 @@ local servers = {
   "yamlls",
   "jsonls",
   "prismals",
+  "dockerls",
+  "docker_compose_language_service",
 }
 
 require("mason-lspconfig").setup({
@@ -72,14 +74,6 @@ local root_dir = function()
   return nvim_lsp.util.root_pattern(".git")(vim.fn.expand("%:p:h"))
 end
 
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = root_dir,
-  })
-end
-
 local python_root_files = {
   "WORKSPACE", -- added for Bazel; items below are from default config
   "pyproject.toml",
@@ -90,29 +84,102 @@ local python_root_files = {
   "pyrightconfig.json",
 }
 
-nvim_lsp["pyright"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern(python_root_files),
-})
+local rust_tools_config = {
+  -- executor = require("rust-tools.executors").quickfix,
 
-nvim_lsp["lua_ls"].setup({
+  inlay_hints = {
+    auto = true,
+    parameter_hints_prefix = " ",
+    other_hints_prefix = " ",
+  },
+  dap = function()
+    local install_root_dir = vim.fn.stdpath("data") .. "/mason"
+    local extension_path = install_root_dir .. "/packages/codelldb/extension/"
+    local codelldb_path = extension_path .. "adapter/codelldb"
+    local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+
+    return {
+      adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+    }
+  end,
+}
+
+local rust_tools_rust_server = {
+  standalone = true,
   on_attach = on_attach,
-  capabilities = capabilities,
-  root_dir = root_dir,
   settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
+    -- List of all options:
+    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+    ["rust-analyzer"] = {
+      check = {
+        command = "cranky",
+        -- extraArgs = { "--all", "--", "-W", "clippy::all" },
       },
+
+      -- rust-analyzer.server.extraEnv
+      -- neovim doesn"t have custom client-side code to honor this setting, it doesn't actually work
+      -- https://github.com/neovim/nvim-lspconfig/issues/1735
+      -- it's in init.vim as a real env variable
+      --
+      --	server = {
+      --		extraEnv = {
+      --			CARGO_TARGET_DIR = "target/rust-analyzer-check"
+      --		}
+      --	}
     },
   },
-})
+}
 
-nvim_lsp["graphql"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "graphql" },
+require("mason-lspconfig").setup_handlers({
+  function(server_name)
+    nvim_lsp[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = root_dir,
+    })
+  end,
+
+  ["pyright"] = function()
+    nvim_lsp["pyright"].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = nvim_lsp.util.root_pattern(python_root_files),
+    })
+  end,
+
+  ["graphql"] = function()
+    nvim_lsp["graphql"].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { "graphql" },
+    })
+  end,
+
+  ["rust_analyzer"] = function()
+    require("rust-tools").setup({
+      -- rust_tools specific settings
+      tools = rust_tools_config,
+      -- on_attach is actually bound server for rust-tools
+      server = rust_tools_rust_server,
+      -- I use lsp-status which adds itself to the capabilities table
+      capabilities = capabilities,
+    })
+  end,
+
+  ["lua_ls"] = function()
+    require("lspconfig").lua_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = root_dir,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    })
+  end,
 })
 
 -- LSP Diagnostics Toggle bindings
