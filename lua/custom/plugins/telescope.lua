@@ -7,7 +7,7 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
   },
   keys = {
-    { "<leader>tt", "<cmd> Telescope CR>", desc = "Telescope" },
+    { "<leader>tt", "<cmd> Telescope <CR>", desc = "Telescope" },
     { "<leader>ff", "<cmd> Telescope find_files <CR>", desc = "Find files" },
     { "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", desc = "Find all" },
     { "<leader>fw", "<cmd> Telescope live_grep <CR>", desc = "Live grep" },
