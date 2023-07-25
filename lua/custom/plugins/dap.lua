@@ -48,4 +48,5 @@ return {
       })
     end,
   },
+  { "mfussenegger/nvim-dap-python" },
 }
