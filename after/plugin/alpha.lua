@@ -144,9 +144,9 @@ local opts = {
     section.hi_top_section,
     section.hi_middle_section,
     section.hi_bottom_section,
-    { type = "padding", val = 2 },
+    { type = "padding", val = 1 },
     section.buttons,
-    { type = "padding", val = 2 },
+    { type = "padding", val = 1 },
     section.footer,
   },
   opts = {
