@@ -75,6 +75,7 @@ cmp.setup({
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "vsnip" },
+    { name = "crates" },
   }, {
     { name = "buffer" },
   }),
