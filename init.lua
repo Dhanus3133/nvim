@@ -23,5 +23,3 @@ vim.api.nvim_command("colorscheme radium")
 vim.api.nvim_command("PetsNew 1")
 vim.api.nvim_command("PetsNew 2")
 require("others.atlast")
-
--- require("Leecode")
