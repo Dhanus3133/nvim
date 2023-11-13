@@ -27,6 +27,26 @@ return {
         -- Refresh path in nvim-tree
         NvimTree.tree.toggle({ path = metadata.path })
         NvimTree.tree.toggle({ path = metadata.path })
+        vim.notify("Switched from " .. metadata.prev_path .. " => " .. metadata.path)
+        for _, e in ipairs(require("bufferline").get_elements().elements) do
+          vim.schedule(function()
+            if e.id == vim.api.nvim_get_current_buf() then
+              return
+            else
+              vim.cmd("bd " .. e.id)
+            end
+          end)
+        end
+        vim.cmd("e")
+      end
+
+      if op == Worktree.Operations.Create then
+        vim.notify("Created " .. metadata.branch .. " in " .. metadata.path)
+      end
+
+      if op == Worktree.Operations.Delete then
+        vim.cmd("SessionDelete")
+        vim.notify("Deleted " .. metadata.path)
       end
     end)
   end,
