@@ -104,6 +104,7 @@ end
 dashboard.section.buttons.val = {
   button("f", "󰈞  Find file", ":Telescope find_files <CR>", {}),
   button("e", "  New file", ":ene <BAR> startinsert <CR>", {}),
+  button("s", "  Find Session", ":Telescope session-lens search_session <CR>", {}),
   button("p", "  Find project", ":Telescope project <CR>", {}),
   button("r", "  Recently used files", ":Telescope oldfiles <CR>", {}),
   button("t", "  Find text", ":Telescope live_grep <CR>", {}),
