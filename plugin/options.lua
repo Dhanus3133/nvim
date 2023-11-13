@@ -1,4 +1,5 @@
 local options = {
+  wrap = false,
   number = true,
   ruler = true,
   relativenumber = true,

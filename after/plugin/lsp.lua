@@ -21,6 +21,7 @@ local servers = {
   "prismals",
   "dockerls",
   "docker_compose_language_service",
+  "elixirls",
 }
 
 require("mason-lspconfig").setup({
