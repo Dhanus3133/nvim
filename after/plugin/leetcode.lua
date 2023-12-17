@@ -1,0 +1,9 @@
+local nmap = require("config.keymap").nmap
+nmap({ "<leader>lq", "<cmd>Leet list<cr>", { desc = "List Questions" } })
+nmap({ "<leader>lm", "<cmd>Leet menu<cr>", { desc = "Leet menu" } })
+nmap({ "<leader>lc", "<cmd>Leet console<cr>", { desc = "Leet console" } })
+nmap({ "<leader>lh", "<cmd>Leet info<cr>", { desc = "Leet info" } })
+nmap({ "<leader>ll", "<cmd>Leet lang<cr>", { desc = "Leet lang" } })
+nmap({ "<leader>ld", "<cmd>Leet desc<cr>", { desc = "Leet desc" } })
+nmap({ "<leader>lr", "<cmd>Leet run<cr>", { desc = "Leet run" } })
+nmap({ "<leader>ls", "<cmd>Leet submit<cr>", { desc = "Leet submit" } })

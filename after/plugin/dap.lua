@@ -13,6 +13,34 @@ dap.listeners.after.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
+local function compile_and_get_executable_path()
+  local filetype = vim.bo.filetype
+  local filepath = "/tmp/" -- vim.fn.expand("%:p:h") .. "/"
+  local executable
+
+  if filetype == "c" then
+    local input = vim.fn.expand("%:t")
+    executable = filepath .. "a.out"
+    vim.fn.system("rm -f " .. executable)
+    vim.fn.system("gcc -g " .. input .. " -o " .. executable)
+  elseif filetype == "cpp" then
+    local input = vim.fn.expand("%:t")
+    executable = filepath .. "a.out"
+    vim.fn.system("rm -f " .. executable)
+    vim.fn.system("g++ -g " .. input .. " -o " .. executable)
+  elseif filetype == "rust" then -- TODO: this is not working for now
+    vim.fn.system("cargo build --bin " .. vim.fn.expand("%:t:r"))
+    executable = filepath .. "target/debug/" .. vim.fn.expand("%:t:r")
+  elseif filetype == "java" then
+    vim.fn.system("javac -g" .. vim.fn.expand("%:t"))
+    local classname = vim.fn.expand("%:t:r")
+    executable = filepath .. classname .. ".class"
+  else
+    print("Unsupported filetype")
+    return
+  end
+  return executable
+end
 -- We need to override nvim-dap's default highlight groups, AFTER requiring nvim-dap for catppuccin.
 vim.api.nvim_set_hl(0, "DapStopped", { fg = "#ABE9B3" })
 
@@ -38,9 +66,7 @@ dap.configurations.cpp = {
     name = "Launch",
     type = "lldb",
     request = "launch",
-    program = function()
-      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-    end,
+    program = compile_and_get_executable_path,
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},
@@ -133,8 +159,6 @@ dap.configurations.python = {
     end,
   },
 }
-
-local dap, dapui = require("dap"), require("dapui")
 
 vim.keymap.set("n", "<Leader>Dc", dap.run_to_cursor, { desc = "Run to Cursor" })
 vim.keymap.set("n", "<Leader>DE", function()
