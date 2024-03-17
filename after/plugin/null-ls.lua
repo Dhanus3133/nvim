@@ -10,6 +10,7 @@ require("mason-null-ls").setup({
     "markdownlint",
     "sqlfluff",
     "json_tool",
+    "stylelint",
     -- "prismaFmt",
   },
 })
@@ -40,6 +41,7 @@ null_ls.setup({
     blt.formatting.json_tool.with({
       extra_args = { "-m", "json.tool", "--indent", "2" },
     }),
+    blt.diagnostics.stylelint,
     -- blt.formatting.prismaFmt.with({
     --   command = { "npx", "prisma", "format" },
     --   args = {},

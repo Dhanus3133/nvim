@@ -61,7 +61,7 @@ local on_attach = function(_, bufnr)
   buf_set_keymap(
     "n",
     "<leader>k",
-    '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, timeout_ms = 2000 })<CR>',
+    '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, timeout_ms = 4000 })<CR>',
     opts
   )
   buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
