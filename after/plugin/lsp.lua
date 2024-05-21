@@ -64,7 +64,7 @@ local on_attach = function(_, bufnr)
     '<cmd>lua vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end, bufnr = bufnr, timeout_ms = 4000 })<CR>',
     opts
   )
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "<A-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 end
