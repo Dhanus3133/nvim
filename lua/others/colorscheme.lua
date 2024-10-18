@@ -176,7 +176,7 @@ function M.setup(colors, config)
   -- Standard syntax highlighting
   hi.Boolean = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
   hi.Character = { guifg = M.colors.base08, guibg = nil, gui = nil, guisp = nil }
-  hi.Comment = { guifg = M.colors.base03, guibg = nil, gui = nil, guisp = nil }
+  hi.Comment = { guifg = M.colors.base05, guibg = nil, gui = nil, guisp = nil }
   hi.Conditional = { guifg = M.colors.base0E, guibg = nil, gui = nil, guisp = nil }
   hi.Constant = { guifg = M.colors.base09, guibg = nil, gui = nil, guisp = nil }
   hi.Define = { guifg = M.colors.base0E, guibg = nil, gui = "none", guisp = nil }

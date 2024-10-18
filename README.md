@@ -26,7 +26,6 @@ NVIM_APPNAME=Dhanus3133/nvim/ nvim
 
 ### bars-and-lines
 
-+ [utilyre/barbecue.nvim](https://dotfyle.com/plugins/utilyre/barbecue.nvim)
 + [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic)
 ### comment
 

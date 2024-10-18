@@ -5,6 +5,7 @@ return {
     "nvim-telescope/telescope-media-files.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-symbols.nvim",
+    "debugloop/telescope-undo.nvim",
   },
   keys = {
     { "<leader>tt", "<cmd> Telescope <CR>", desc = "Telescope" },
@@ -21,6 +22,7 @@ return {
     { "<leader>th", "<cmd> Telescope themes <CR>", desc = "PicK themes" },
     { "<leader>ma", "<cmd> Telescope marks <CR>", desc = "Telescope bookmarks" },
     { "<leader>fe", "<cmd> Telescope file_browser <CR>", desc = "File Browser" },
+    { "<leader>tu", "<cmd> Telescope undo <CR>", desc = "Browser" },
   },
   config = function()
     local telescope = require("telescope")
@@ -32,9 +34,10 @@ return {
           -- filetypes whitelist
           -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
           filetypes = { "png", "webp", "jpg", "jpeg" },
-          find_cmd = "rg", -- find command (defaults to `fd`)
+          find_cmd = "rg --smart-case", -- find command (defaults to `fd`)
         },
       },
     })
+    telescope.load_extension("undo")
   end,
 }

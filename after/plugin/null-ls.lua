@@ -11,6 +11,7 @@ require("mason-null-ls").setup({
     "sqlfluff",
     "json_tool",
     "stylelint",
+    "djlint",
     -- "prismaFmt",
   },
 })
@@ -28,12 +29,23 @@ null_ls.setup({
     -- blt.formatting.black.with({ args = { "--quiet", "-" } }),
     blt.formatting.autopep8,
     blt.formatting.prettier,
+    -- blt.formatting.prettier.with({ extra_args = { "--tab-width", "4", "--single-quote", "true" } }),
     blt.formatting.gofmt,
     blt.formatting.clang_format,
     blt.formatting.rustfmt.with({
       extra_args = { "--edition=2021" },
     }),
-    blt.formatting.shfmt,
+    blt.formatting.shfmt.with({
+      command = "shfmt",
+      args = {
+        "-i",
+        "2",
+        "-ci",
+        "-bn",
+        "$FILENAME",
+        "-w",
+      },
+    }),
     blt.formatting.markdownlint,
     blt.formatting.sqlfluff.with({
       extra_args = { "--dialect", "postgres" }, -- change to your dialect
@@ -42,6 +54,9 @@ null_ls.setup({
       extra_args = { "-m", "json.tool", "--indent", "2" },
     }),
     blt.diagnostics.stylelint,
+    blt.formatting.djlint.with({
+      extra_args = { "--indent", "2", "--blank-line-after-tag", "load,extends,include,endblock" },
+    }),
     -- blt.formatting.prismaFmt.with({
     --   command = { "npx", "prisma", "format" },
     --   args = {},
