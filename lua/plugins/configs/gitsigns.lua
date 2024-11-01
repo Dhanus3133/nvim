@@ -11,18 +11,22 @@ require("gitsigns").setup({
     -- Navigation
     map("n", "]c", function()
       if vim.wo.diff then
-        vim.cmd.normal({ "]c", bang = true })
-      else
-        gitsigns.nav_hunk("next")
+        return "]c"
       end
+      vim.schedule(function()
+        gitsigns.next_hunk()
+      end)
+      return "<Ignore>"
     end, { expr = true, desc = "Jump to next hunk" })
 
     map("n", "[c", function()
       if vim.wo.diff then
-        vim.cmd.normal({ "[c", bang = true })
-      else
-        gitsigns.nav_hunk("prev")
+        return "[c"
       end
+      vim.schedule(function()
+        gitsigns.prev_hunk()
+      end)
+      return "<Ignore>"
     end, { expr = true, desc = "Jump to prev hunk" })
 
     -- Actions
