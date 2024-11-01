@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 
 o.laststatus = 3 -- global statusline
 o.showmode = false
+o.swapfile = false
 
 o.clipboard = "unnamedplus"
 
@@ -13,6 +14,8 @@ o.shiftwidth = 2
 o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
+o.scrolloff = 8
+o.sidescrolloff = 8
 
 vim.opt.fillchars = { eob = " " }
 o.ignorecase = true
