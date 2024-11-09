@@ -210,4 +210,8 @@ return {
     end,
     opts = {},
   },
+
+  {
+    "szw/vim-maximizer",
+  },
 }
