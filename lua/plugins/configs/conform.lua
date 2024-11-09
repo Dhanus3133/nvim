@@ -6,7 +6,7 @@ return {
     },
     python = { "black" },
     json = { "prettier", "json_tool" },
-    go = {},
+    go = { "gofumpt" },
     c = { "clang_format" },
     cpp = { "clang_format" },
     rust = {

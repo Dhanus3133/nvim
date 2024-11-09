@@ -59,7 +59,7 @@ M.mason = {
     "stylua",
     "black",
     "prettier",
-    "gofmt",
+    "gofumpt",
     "clang-format",
     "rustfmt",
     "shfmt",
