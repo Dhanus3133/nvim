@@ -5,7 +5,14 @@ return {
       extra_args = { "--config-path", vim.fs.normalize("~/.config/nvim/.stylua.toml") },
     },
     python = { "black" },
-    json = { "prettier", "json_tool" },
+    json = { "prettierd", "json_tool" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    ts = { "prettier" },
+    vue = { "prettier" },
+    svelte = { "prettier" },
+    tsx = { "prettier" },
+    jsx = { "prettier" },
     go = { "gofumpt" },
     c = { "clang_format" },
     cpp = { "clang_format" },
@@ -28,8 +35,9 @@ return {
       "djlint",
       extra_args = { "--indent", "2", "--blank-line-after-tag", "load,extends,include,endblock" },
     },
+    yaml = { "yamlfmt" },
   },
-
+  timeout_ms = 100000,
   stop_after_first = true,
 
   -- Optional: Formatting on save

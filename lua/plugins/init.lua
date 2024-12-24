@@ -23,7 +23,17 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    opts = {},
+    opts = {
+      renderer = {
+        indent_markers = {
+          enable = true,
+        },
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
+    },
   },
 
   {
@@ -184,12 +194,9 @@ return {
   {
     "pwntester/octo.nvim",
     lazy = true,
+    cmd = { "Octo" },
     config = function()
-      require("octo").setup({
-        suppress_missing_scope = {
-          projects_v2 = true,
-        },
-      })
+      require("plugins.configs.octo")
     end,
   },
 

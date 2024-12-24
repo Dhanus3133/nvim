@@ -21,7 +21,9 @@ local function setup_rust_lsp()
       liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
     else
       liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-      rust_analyzer_binary = { install_dir .. "/" .. "rust-analyzer-x86_64-unknown-linux-gnu" }
+      -- rust_analyzer_binary = { install_dir .. "/" .. "rust-analyzer-x86_64-unknown-linux-gnu" }
+      -- Use system rust-analyzer due to mason rust-analyzer suggestions for std doesn't work
+      rust_analyzer_binary = { "/usr/bin/rust-analyzer" }
     end
     adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path)
   end
@@ -65,6 +67,18 @@ local function setup_rust_lsp()
           "<leader>ldd",
           "<cmd>RustLsp openDocs<CR>",
           { buffer = bufnr, desc = "[Rust]: Open Documentation" }
+        )
+        vim.keymap.set(
+          "n",
+          "<leader>e",
+          "<cmd>RustLsp renderDiagnostic<CR>",
+          { buffer = bufnr, desc = "[Rust]: Diagnostic" }
+        )
+        vim.keymap.set(
+          "n",
+          "<leader>gd",
+          "<cmd>RustLsp relatedDiagnostics<CR>",
+          { buffer = bufnr, desc = "[Rust]: [g]o to related [d]iagnostics" }
         )
       end,
       settings = {
