@@ -95,9 +95,9 @@ local function setup_rust_lsp()
       inlay_hints = {
         auto = true,
         show_parameter_hints = true,
-        parameter_hints_prefix = "  <-- ",
+        parameter_hints_prefix = " ",
         only_current_line = false,
-        other_hints_prefix = "  --> ",
+        other_hints_prefix = " ",
       },
     },
     dap = {

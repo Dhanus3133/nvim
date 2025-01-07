@@ -123,3 +123,8 @@ map("n", "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Navigate to the pr
 
 -- vim-maximizer
 map({ "n", "v" }, "F", "<cmd>MaximizerToggle<cr>", { desc = "Full Screen" })
+
+-- LSP Inlay hints
+map("n", "<C-i>", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle Inlay Hints" })
