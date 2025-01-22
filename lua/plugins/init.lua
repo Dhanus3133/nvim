@@ -44,6 +44,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "andymass/vim-matchup",
+    },
     config = function()
       require("plugins.configs.treesitter")
     end,
@@ -156,6 +160,15 @@ return {
     config = function(_, opts)
       -- Set Options
       vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
+    end,
+  },
+
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      local crates = require("crates")
+      crates.setup()
     end,
   },
 
