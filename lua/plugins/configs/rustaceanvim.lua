@@ -21,9 +21,7 @@ local function setup_rust_lsp()
       liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
     else
       liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-      -- rust_analyzer_binary = { install_dir .. "/" .. "rust-analyzer-x86_64-unknown-linux-gnu" }
-      -- Use system rust-analyzer due to mason rust-analyzer suggestions for std doesn't work
-      rust_analyzer_binary = { "/usr/bin/rust-analyzer" }
+      rust_analyzer_binary = { install_dir .. "/" .. "rust-analyzer-x86_64-unknown-linux-gnu" }
     end
     adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path)
   end
@@ -83,6 +81,15 @@ local function setup_rust_lsp()
       end,
       settings = {
         ["rust-analyzer"] = {
+          lens = {
+            enable = true,
+          },
+          semanticHighlighting = {
+            strings = {
+              -- disable because it overrides TreeSitter injections
+              enable = false,
+            },
+          },
           -- cargo = { features = "all" },
           -- checkOnSave = true,
           -- check = { command = "clippy", features = "all" },
@@ -99,6 +106,11 @@ local function setup_rust_lsp()
         only_current_line = false,
         other_hints_prefix = " ",
       },
+      on_initialized = function()
+        vim.cmd([[
+            autocmd BufEnter,CursorHold,InsertLeave,BufWritePost *.rs silent! lua vim.lsp.codelens.refresh()
+          ]])
+      end,
     },
     dap = {
       adapter = adapter,

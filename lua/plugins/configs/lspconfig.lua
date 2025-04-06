@@ -28,13 +28,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, "Code action", opts)
     map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostics", opts)
     map("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", "Set diagnostic loclist", opts)
-    map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic", opts)
-    map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic", opts)
+    map(
+      "n",
+      "<C-n>",
+      "<cmd>lua vim.diagnostic.jump { count = -1, float = true }<CR>",
+      "Go to previous diagnostic",
+      opts
+    )
+    map("n", "<C-p>", "<cmd>lua vim.diagnostic.jump { count = 1, float = true }<CR>", "Go to next diagnostic", opts)
 
     map("n", "<leader>dd", function()
       vim.diagnostic[vim.diagnostic.is_enabled() and "disable" or "enable"]()
       print("All diagnostics are " .. (vim.diagnostic.is_enabled() and "enabled" or "disabled"))
     end, "Toggle diagnostics", opts)
+
+    -- code lens run
+    map("n", "<leader>cl", vim.lsp.codelens.run, "Run code lens", opts)
+
+    vim.diagnostic.config({
+      virtual_text = true,
+    })
   end,
 })
 

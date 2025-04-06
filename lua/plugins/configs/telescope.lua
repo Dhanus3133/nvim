@@ -4,5 +4,6 @@ return {
     layout_config = {
       horizontal = { prompt_position = "top" },
     },
+    debounce = 100,
   },
 }
