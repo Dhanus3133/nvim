@@ -68,6 +68,8 @@ M.mason = {
     "json_tool",
     "stylelint",
     "djlint",
+    "rubocop",
+    "ruby-lsp",
   },
 }
 

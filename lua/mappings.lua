@@ -129,6 +129,88 @@ map("n", "<C-i>", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle Inlay Hints" })
 
+-- DAP
+map("n", "<Leader>Dc", function()
+  require("dap").run_to_cursor()
+end, { desc = "Run to Cursor" })
+
+map("n", "<Leader>DE", function()
+  require("dap").eval(vim.fn.input("[Expression] > "))
+end, { desc = "Evaluate Input" })
+
+map("n", "<Leader>DB", function()
+  require("dap").set_breakpoint(vim.fn.input("[Condition] > "))
+end, { desc = "Conditional Breakpoint" })
+
+map("n", "<Leader>DC", function()
+  require("dap").clear_breakpoints()
+end, { desc = "clear breakpoints" })
+
+map("n", "<Leader>DU", function()
+  require("dapui").toggle()
+end, { desc = "Toggle UI" })
+
+map("n", "<Leader>Dd", function()
+  require("dap").disconnect()
+end, { desc = "Disconnect" })
+
+map("n", "<Leader>De", function()
+  require("dapui").eval()
+end, { desc = "Evaluate" })
+
+map("n", "<Leader>Dg", function()
+  require("dap").session()
+end, { desc = "Get Session" })
+
+map("n", "<Leader>Dh", function()
+  require("dap.ui.widgets").hover()
+end, { desc = "Hover Variables" })
+
+map("n", "<Leader>DS", function()
+  local widgets = require("dap.ui.widgets")
+  widgets.centered_float(widgets.scopes)
+end, { desc = "Scopes" })
+
+map("n", "<Leader>Dq", function()
+  require("dap").close()
+end, { desc = "Quit" })
+
+map("n", "<Leader>Dr", function()
+  require("dap").repl.toggle()
+end, { desc = "Toggle Repl" })
+
+map("n", "<F5>", function()
+  require("dap").continue()
+end, { desc = "Start/Continue" })
+
+map("n", "<F8>", function()
+  require("dap").toggle_breakpoint()
+end, { desc = "Toggle Breakpoint" })
+
+map("n", "<Leader>Dx", function()
+  require("dap").terminate()
+end, { desc = "Terminate" })
+
+map("n", "<Leader>Di", function()
+  require("dap").step_into()
+end, { desc = "Step Into" })
+
+map("n", "<Leader>Du", function()
+  require("dap").step_out()
+end, { desc = "Step Out" })
+
+map("n", "<Leader>Do", function()
+  require("dap").step_over()
+end, { desc = "Step Over" })
+
+map("n", "<Leader>Db", function()
+  require("dap").step_back()
+end, { desc = "Step Back" })
+
+map("v", "<Leader>De", function()
+  require("dapui").eval()
+end, { desc = "Evaluate" })
+
 -- crates.nvim
 map("n", "<leader>ct", function()
   require("crates").toggle()

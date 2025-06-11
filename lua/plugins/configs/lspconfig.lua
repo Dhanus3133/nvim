@@ -130,6 +130,7 @@ local servers = {
   "dockerls",
   "docker_compose_language_service",
   "elixirls",
+  "ruby_lsp",
 }
 
 -- Setup language servers

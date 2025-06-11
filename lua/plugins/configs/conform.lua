@@ -25,10 +25,7 @@ return {
       extra_args = { "-i", "2", "-ci", "-bn", "$FILENAME", "-w" },
     },
     markdown = { "markdownlint" },
-    sql = {
-      -- "sqlfluff",
-      -- extra_args = { "--dialect", "postgres" },
-    },
+    sql = { "sql_formatter" },
     css = { "stylelint" },
     scss = { "stylelint" },
     html = {
@@ -36,6 +33,7 @@ return {
       extra_args = { "--indent", "2", "--blank-line-after-tag", "load,extends,include,endblock" },
     },
     yaml = { "yamlfmt" },
+    ruby = { "rubocop" },
   },
   timeout_ms = 100000,
   stop_after_first = true,
