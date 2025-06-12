@@ -235,6 +235,7 @@ return {
   {
     "szw/vim-maximizer",
   },
+
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
@@ -243,24 +244,30 @@ return {
     end,
     opts = {},
   },
+
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
-  -- {
-  --   "cordx56/rustowl",
-  --   version = "*", -- Latest stable version
-  --   build = "cd rustowl && cargo install --path . --locked",
-  --   lazy = false, -- This plugin is already lazy
-  --   opts = {
-  --     client = {
-  --       on_attach = function(_, buffer)
-  --         vim.keymap.set("n", "<leader>o", function()
-  --           require("rustowl").toggle(buffer)
-  --         end, { buffer = buffer, desc = "Toggle RustOwl" })
-  --       end,
-  --     },
-  --   },
-  -- },
+
+  {
+    "nvim-neotest/neotest",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- Languages
+      "rouge8/neotest-rust",
+      "nvim-neotest/neotest-python",
+      "marilari88/neotest-vitest",
+      -- Coverage
+      "andythigpen/nvim-coverage",
+    },
+    config = function()
+      require("plugins.configs.test")
+    end,
+  },
 }

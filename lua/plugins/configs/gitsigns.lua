@@ -46,6 +46,7 @@ require("gitsigns").setup({
       gitsigns.blame_line({ full = true })
     end, { desc = "Blame line" })
     map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
+    map("n", "<leader>tg", gitsigns.toggle_signs, { desc = "Toggle Git Signs" })
     map("n", "<leader>hd", gitsigns.diffthis, { desc = "Toggle Word Diff" })
     map("n", "<leader>hD", function()
       gitsigns.diffthis("~")

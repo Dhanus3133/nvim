@@ -6,13 +6,13 @@ local function setup_rust_lsp()
   if has_mason then
     -- DAP binaries
     local codelldb = mason_registry.get_package("codelldb")
-    local extension_path = codelldb:get_install_path() .. "/extension/"
+    local extension_path = vim.fs.joinpath(vim.fn.expand("$MASON"), "packages", codelldb.name, "extension/")
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = ""
 
     -- Find Rust Analyzer binary path in mason registry
     local ra_package = mason_registry.get_package("rust-analyzer")
-    local install_dir = ra_package:get_install_path()
+    local install_dir = vim.fs.joinpath(vim.fn.expand("$MASON"), "packages", ra_package.name)
 
     if vim.fn.has("win32") == 1 then
       liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
