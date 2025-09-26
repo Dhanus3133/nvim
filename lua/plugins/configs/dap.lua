@@ -55,6 +55,13 @@ require("nvim-dap-virtual-text").setup({
   -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
 })
 
+local has_mason, mason_registry = pcall(require, "mason-registry")
+if has_mason then
+  local debugpy = mason_registry.get_package("debugpy")
+  local path = vim.fs.joinpath(vim.fn.expand("$MASON"), "packages", debugpy.name, "")
+  require("dap-python").setup(path .. "venv/bin/python")
+end
+
 -- require("nvim-dap-virtual-text").setup({
 --   enabled = true, -- enable this plugin (the default)
 --   enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
