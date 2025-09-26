@@ -26,3 +26,8 @@ require("lazy").setup(plugins)
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
   dofile(vim.g.base46_cache .. v)
 end
+
+local status, db_config = pcall(require, "private.db_config")
+if status then
+  vim.g.dbs = db_config.dbs
+end
