@@ -270,3 +270,32 @@ end, { desc = "Open Crates.io" })
 map("n", "<leader>cL", function()
   require("crates").open_lib_rs()
 end, { desc = "Open lib.rs" })
+
+-- rest.nvim
+map("n", "<leader>ro", function()
+  vim.cmd("Rest open")
+end, { desc = "Open Rest Result Pane" })
+
+map("n", "<leader>rr", function()
+  vim.cmd("Rest run")
+end, { desc = "Run HTTP Request under Cursor" })
+
+map("n", "<leader>rl", function()
+  vim.cmd("Rest last")
+end, { desc = "Run Last HTTP Request" })
+
+map("n", "<leader>rg", function()
+  vim.cmd("Rest logs")
+end, { desc = "Edit Rest Logs File" })
+
+map("n", "<leader>rc", function()
+  vim.cmd("Rest cookies")
+end, { desc = "Edit Cookies File" })
+
+map("n", "<leader>rs", function()
+  vim.cmd("Rest env show")
+end, { desc = "Show Environment Variables" })
+
+map("n", "<leader>re", function()
+  vim.cmd("Telescope rest select_env")
+end, { desc = "Select & Register Environment File" })

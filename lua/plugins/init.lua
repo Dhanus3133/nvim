@@ -47,7 +47,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "andymass/vim-matchup",
+      -- "andymass/vim-matchup", -- DISABLED due to lag on larger files
     },
     config = function()
       require("plugins.configs.treesitter")
@@ -140,6 +140,8 @@ return {
       local _, telescope = pcall(require, "telescope")
       pcall(telescope.load_extension, "file_browser")
       pcall(telescope.load_extension, "undo")
+      pcall(telescope.load_extension, "rest")
+      pcall(telescope.extensions.rest.select_env)
     end,
   },
 
@@ -268,6 +270,52 @@ return {
     },
     config = function()
       require("plugins.configs.test")
+    end,
+  },
+
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua", "fidget.nvim" },
+    },
+  },
+
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "http")
+        end,
+      },
+      {
+        "j-hui/fidget.nvim",
+        opts = {},
+      },
+    },
+    rocks = {
+      hererocks = true,
+    },
+  },
+
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
 }
