@@ -90,6 +90,9 @@ local function setup_rust_lsp()
               enable = false,
             },
           },
+          diagnostics = {
+            disabled = { "inactive-code" },
+          },
           -- cargo = { features = "all" },
           -- checkOnSave = true,
           -- check = { command = "clippy", features = "all" },

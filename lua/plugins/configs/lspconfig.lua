@@ -106,6 +106,12 @@ local server_configs = {
     filetypes = { "graphql" },
     capabilities = capabilities,
   },
+
+  elixirls = {
+    cmd = { "elixir-ls" },
+    root_dir = lspconfig.util.root_pattern("mix.exs", ".git"),
+    capabilities = capabilities,
+  },
 }
 
 -- Default setup for other language servers
