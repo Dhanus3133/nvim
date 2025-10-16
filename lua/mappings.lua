@@ -299,3 +299,20 @@ end, { desc = "Show Environment Variables" })
 map("n", "<leader>re", function()
   vim.cmd("Telescope rest select_env")
 end, { desc = "Select & Register Environment File" })
+
+-- gitlinker.nvim
+map("n", "<leader>gb", function()
+  require("gitlinker").get_buf_range_url("n", { action_callback = require("gitlinker.actions").open_in_browser })
+end, { desc = "GitLinker: Open file in browser" })
+
+map("v", "<leader>gb", function()
+  require("gitlinker").get_buf_range_url("v", { action_callback = require("gitlinker.actions").open_in_browser })
+end, { desc = "GitLinker: Open selection in browser" })
+
+map("n", "<leader>gY", function()
+  require("gitlinker").get_repo_url()
+end, { desc = "GitLinker: Copy repo URL" })
+
+map("n", "<leader>gB", function()
+  require("gitlinker").get_repo_url({ action_callback = require("gitlinker.actions").open_in_browser })
+end, { desc = "GitLinker: Open repo in browser" })

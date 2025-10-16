@@ -141,7 +141,7 @@ return {
       pcall(telescope.load_extension, "file_browser")
       pcall(telescope.load_extension, "undo")
       pcall(telescope.load_extension, "rest")
-      pcall(telescope.extensions.rest.select_env)
+      -- pcall(telescope.extensions.rest.select_env)
     end,
   },
 
@@ -321,6 +321,13 @@ return {
     },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+
+  {
+    "ruifm/gitlinker.nvim",
+    config = function()
+      require("gitlinker").setup()
     end,
   },
 }
