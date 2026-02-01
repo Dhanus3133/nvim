@@ -147,13 +147,15 @@ for _, lsp in ipairs(servers) do
       -- If a special setup function is provided
       server_configs[lsp].setup_func()
     else
-      -- Use lspconfig with the defined configuration
-      lspconfig[lsp].setup(server_configs[lsp])
+      -- Use vim.lsp.config with the defined configuration
+      vim.lsp.config(lsp, server_configs[lsp])
+      vim.lsp.enable(lsp)
     end
   else
     -- For servers without custom config, use default setup
-    lspconfig[lsp].setup({
+    vim.lsp.config(lsp, {
       capabilities = capabilities,
     })
+    vim.lsp.enable(lsp)
   end
 end
