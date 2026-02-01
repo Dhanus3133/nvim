@@ -58,7 +58,7 @@ map("n", "<C-t>", function()
 end)
 
 -- terminal
-vim.keymap.set({ "n", "t" }, ";", function()
+map({ "n", "t" }, ";", function()
   require("nvchad.term").toggle({
     pos = "float",
     relative = "editor",
@@ -96,13 +96,23 @@ map({ "n", "t" }, "<leader>gd", function()
   })
 end, { desc = "LazyDocker" })
 
+map({ "n", "t" }, "<leader>gs", function()
+  require("nvchad.term").toggle({
+    pos = "float",
+    cmd = "sqlit",
+    id = "SQLitTerm",
+    float_opts = {
+      width = 1,
+      height = 1,
+    },
+  })
+end, { desc = "SQLit" })
+
 -- window
 map("n", "<leader>wv", "<C-w>v", { desc = "Window Split vertically" })
 map("n", "<leader>wh", "<C-w>s", { desc = "Window split horizontally" })
 map("n", "<leader>we", "<C-w>=", { desc = "Window splits equal size" })
 map("n", "<leader>wx", "<cmd>close<CR>", { desc = "Window close current split" })
-
-map("i", "jk", "<ESC>")
 
 -- diffview.nvim
 map("n", "<leader><leader>v", function()
