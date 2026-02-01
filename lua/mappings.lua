@@ -124,13 +124,6 @@ map("n", "<leader><leader>v", function()
   end
 end, { desc = "Toggle DiffView" })
 
--- Tmux Navigator
-map("n", "<c-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate to the left pane" })
-map("n", "<c-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate to the bottom pane" })
-map("n", "<c-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate to the top pane" })
-map("n", "<c-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate to the right pane" })
-map("n", "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Navigate to the previous pane" })
-
 -- vim-maximizer
 map({ "n", "v" }, "F", "<cmd>MaximizerToggle<cr>", { desc = "Full Screen" })
 
