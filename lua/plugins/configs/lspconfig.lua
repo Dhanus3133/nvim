@@ -71,11 +71,6 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 -- Setup language servers.
-local lspconfig = require("lspconfig")
-local root_dir = function()
-  return lspconfig.util.root_pattern(".git")(vim.fn.expand("%:p:h"))
-end
-
 local python_root_files = {
   "WORKSPACE", -- Bazel
   "pyproject.toml",
@@ -89,28 +84,32 @@ local python_root_files = {
 -- Specific server configurations
 local server_configs = {
   pyright = {
-    root_dir = lspconfig.util.root_pattern(python_root_files),
-    capabilities = capabilities,
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_markers = python_root_files,
   },
 
   lua_ls = {
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
     settings = {
       Lua = {
         diagnostics = { globals = { "vim" } },
       },
     },
-    capabilities = capabilities,
   },
 
   graphql = {
+    cmd = { "graphql-lsp", "server", "-m", "stream" },
     filetypes = { "graphql" },
-    capabilities = capabilities,
+    root_markers = { ".git" },
   },
 
   elixirls = {
     cmd = { "elixir-ls" },
-    root_dir = lspconfig.util.root_pattern("mix.exs", ".git"),
-    capabilities = capabilities,
+    filetypes = { "elixir", "eelixir", "heex", "surface" },
+    root_markers = { "mix.exs", ".git" },
   },
 }
 
@@ -139,6 +138,9 @@ local servers = {
   "ruby_lsp",
 }
 
+-- Set default capabilities for all servers
+vim.lsp.config('*', { capabilities = capabilities })
+
 -- Setup language servers
 for _, lsp in ipairs(servers) do
   if server_configs[lsp] then
@@ -152,10 +154,7 @@ for _, lsp in ipairs(servers) do
       vim.lsp.enable(lsp)
     end
   else
-    -- For servers without custom config, use default setup
-    vim.lsp.config(lsp, {
-      capabilities = capabilities,
-    })
+    -- For servers without custom config, enable using built-in configs
     vim.lsp.enable(lsp)
   end
 end
