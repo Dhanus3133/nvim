@@ -23,8 +23,19 @@ local plugins = require("plugins")
 
 require("lazy").setup(plugins)
 
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-  dofile(vim.g.base46_cache .. v)
+pcall(require, "nvchad")
+
+if vim.fn.isdirectory(vim.g.base46_cache) ~= 1 then
+  local status, base46 = pcall(require, "base46")
+  if status then
+    base46.load_all_highlights()
+  end
+end
+
+if vim.fn.isdirectory(vim.g.base46_cache) == 1 then
+  for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+    dofile(vim.g.base46_cache .. v)
+  end
 end
 
 local status, db_config = pcall(require, "private.db_config")
