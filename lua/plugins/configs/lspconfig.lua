@@ -38,8 +38,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<C-p>", "<cmd>lua vim.diagnostic.jump { count = 1, float = true }<CR>", "Go to next diagnostic", opts)
 
     map("n", "<leader>dd", function()
-      vim.diagnostic[vim.diagnostic.is_enabled() and "disable" or "enable"]()
-      print("All diagnostics are " .. (vim.diagnostic.is_enabled() and "enabled" or "disabled"))
+      local enable = not vim.diagnostic.is_enabled()
+      vim.diagnostic.enable(enable)
+      print("All diagnostics are " .. (enable and "enabled" or "disabled"))
     end, "Toggle diagnostics", opts)
 
     -- code lens run
