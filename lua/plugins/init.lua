@@ -43,6 +43,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    version = "v0.9.2",
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
@@ -140,8 +141,6 @@ return {
       local _, telescope = pcall(require, "telescope")
       pcall(telescope.load_extension, "file_browser")
       pcall(telescope.load_extension, "undo")
-      pcall(telescope.load_extension, "rest")
-      -- pcall(telescope.extensions.rest.select_env)
     end,
   },
 
@@ -296,35 +295,6 @@ return {
     config = function()
       require("plugins.configs.test")
     end,
-  },
-
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    config = true,
-    opts = {
-      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua", "fidget.nvim" },
-    },
-  },
-
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-          opts.ensure_installed = opts.ensure_installed or {}
-          table.insert(opts.ensure_installed, "http")
-        end,
-      },
-      {
-        "j-hui/fidget.nvim",
-        opts = {},
-      },
-    },
-    rocks = {
-      hererocks = true,
-    },
   },
 
   {

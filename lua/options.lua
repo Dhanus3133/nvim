@@ -40,3 +40,6 @@ vim.api.nvim_set_hl(0, "IndentLine", { link = "Comment" })
 
 -- Inlay hints
 vim.lsp.inlay_hint.enable(true)
+
+-- Suppress deprecation warnings
+vim.deprecate = function() end
