@@ -42,16 +42,11 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    version = "v0.9.2",
-    build = ":TSUpdate",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      -- "andymass/vim-matchup", -- DISABLED due to lag on larger files
-    },
+    "arborist-ts/arborist.nvim",
     config = function()
-      require("plugins.configs.treesitter")
+      require("arborist").setup({
+        update_cadence = "weekly",
+      })
     end,
   },
 
@@ -207,6 +202,11 @@ return {
   },
 
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+  },
+
+  {
     "pwntester/octo.nvim",
     lazy = true,
     cmd = { "Octo" },
@@ -284,7 +284,6 @@ return {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
       -- Languages
       "rouge8/neotest-rust",
       "nvim-neotest/neotest-python",
